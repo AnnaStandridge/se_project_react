@@ -1,0 +1,40 @@
+.modal__content-item {
+  background-color: white;
+  height: 610px;
+  max-width: 498px;
+  padding: 0;
+  position: relative;
+  border-radius: 10px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent url(../images/close.svg) no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__image {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal__text {
+  padding-left: 20px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: left;
+  padding: 20px 0 32px 32px;
+}
+
+.modal__text-clothes {
+  padding-bottom: 10px;
+}

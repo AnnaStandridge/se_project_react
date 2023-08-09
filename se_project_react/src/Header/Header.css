@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  padding: 20px 35px 0px;
+  font-family: "Cabinet Grotesk", serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.header__logo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__avatar-logo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header__button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Cabinet Grotesk";
+  font-weight: bold;
+}
+
+.header__button.hover {
+  color: rgba(0, 0, 0, 0.6);
+}
