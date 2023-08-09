@@ -26,7 +26,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  background: transparent url(../images/close.svg) no-repeat;
+  background: transparent url(../../images/close.svg) no-repeat;
   background-size: contain;
   width: 20px;
   height: 20px;
