@@ -27,10 +27,14 @@ function App() {
   };
 
   useEffect(() => {
-    getForecastWeather().then((data) => {
-      const temperature = parseWeatherData(data);
-      setTemp(temperature);
-    });
+    getForecastWeather()
+      .then((data) => {
+        const temperature = parseWeatherData(data);
+        setTemp(temperature);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   return (
@@ -68,7 +72,12 @@ function App() {
               <label>Hot</label>
             </div>
             <div>
-              <input className="modal__radio_button" type="radio" id="warm" value="warm" />
+              <input
+                className="modal__radio_button"
+                type="radio"
+                id="warm"
+                value="warm"
+              />
               <label>Warm</label>
             </div>
             <div>

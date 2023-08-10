@@ -1,4 +1,6 @@
 import "./Header.css";
+import wtwrLogo from "../../images/logo.svg";
+import avatar from "../../images/avatar.svg";
 
 const Header = ({ onCreateModal }) => {
   console.log("Header");
@@ -7,19 +9,23 @@ const Header = ({ onCreateModal }) => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={require("../../images/logo.svg").default} alt="logo" />
+          <img src={wtwrLogo} alt="logo" />
         </div>
         <div>June 15, New York</div>
       </div>
       <div className="header__avatar-logo">
         <div>
-          <button className="header__button" type="text" onClick={onCreateModal}>
+          <button
+            className="header__button"
+            type="text"
+            onClick={onCreateModal}
+          >
             + Add clothes
           </button>
         </div>
         <div>Terrence Tegegne</div>
         <div>
-          <img src={require("../../images/avatar.svg").default} alt="logo" />
+          <img src={avatar} alt="logo" />
         </div>
       </div>
     </header>
