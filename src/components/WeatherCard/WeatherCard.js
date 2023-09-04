@@ -2,7 +2,6 @@ import "./WeatherCard.css";
 import { weatherOptions } from "../../utils/constants";
 
 const WeatherCard = ({ day, type, weatherTemp = "" }) => {
-  console.log("weather card");
 
   const imageSrc = weatherOptions.filter((i) => {
     console.log(i);

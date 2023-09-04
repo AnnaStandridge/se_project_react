@@ -5,7 +5,6 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
 const Header = ({ onCreateModal }) => {
-  console.log("Header");
 
   return (
     <header className="header">

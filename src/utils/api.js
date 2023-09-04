@@ -8,6 +8,10 @@ export const processServerResponse = (res) => {
   }
 };
 
+export function request(url, options) {
+  return fetch(url, options).then(processServerResponse);
+}
+
 export function fetchItems() {
   const getItems = fetch(`${baseUrl}/items`, {
     method: "GET",
