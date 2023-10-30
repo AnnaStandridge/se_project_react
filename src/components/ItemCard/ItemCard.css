@@ -6,17 +6,21 @@
   margin-top: 20px;
 }
 
-.card__title {
+.card_title {
+  display: flex;
+  position: relative;
+  align-items: center;
   font-family: "Cabinet Grotesk", serif;
   font-size: 20px;
   line-height: 25px;
   font-weight: bold;
+  top: -330px;
+  left: 130px;
+  gap: 10px;
 }
 
 .card_name {
-  position: absolute;
-  top: 10px;
-  left: 40%;
+  position: relative;
   font-family: "Cabinet Grotesk", serif;
   font-size: 16px;
   line-height: 20px;
@@ -34,10 +38,33 @@
   cursor: pointer;
 }
 
+.card_image:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .card_items {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   margin-top: 20px;
+}
+
+.card_like-button {
+  position: relative;
+  width: 18px;
+  height: 15px;
+}
+
+.card_like-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.card_like-button_hidden {
+  visibility: hidden;
+}
+
+.card_like-button_visible {
+  visibility: visible;
 }

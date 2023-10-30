@@ -35,3 +35,22 @@
 .header__button.hover {
   color: rgba(0, 0, 0, 0.6);
 }
+
+.header__registration {
+  display: flex;
+  gap: 20px;
+}
+
+.header__reg-button {
+  font-family: "Cabinet Grotesk", serif;
+  font-size: 20px;
+  line-height: 1.2;
+  border: none;
+  background-color: white;
+  padding: 0;
+}
+
+.header__reg-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

@@ -1,17 +1,41 @@
 import "./ItemCard.css";
+import unliked_button from "../../images/like-inactive.svg";
+import liked_button from "../../images/like-active.svg";
+import React, { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ItemCard = ({ item, onSelectCard }) => {
+const ItemCard = ({ item, onSelectCard, onCardLike }) => {
+  const currentUser = useContext(CurrentUserContext);
+
+  const itemLikeButtonSrc = liked_button;
+
+  let isAuthorized = false;
+  if (currentUser !== "") {
+    isAuthorized = true;
+  } else {
+    isAuthorized = false;
+  }
+
+  const cardLikeButton = `card_like-button ${
+    isAuthorized ? "card_like-button_visible" : "card_like-button_hidden"
+  }`;
+
   return (
     <div className="card">
-      <div>
+      <img
+        className="card_image"
+        src={item.imageUrl}
+        alt={item.name}
+        onClick={() => onSelectCard(item)}
+      />
+      <div className="card_title">
+        <p className="card_name">{item.name}</p>
         <img
-          className="card_image"
-          src={item.imageUrl}
-          alt={item.name}
-          onClick={() => onSelectCard(item)}
+          className={cardLikeButton}
+          src={itemLikeButtonSrc}
+          onClick={() => onCardLike(item._id, currentUser)}
         />
       </div>
-      <h3 className="card_name">{item.name}</h3>
     </div>
   );
 };

@@ -1,5 +1,4 @@
-const baseUrl =
-  "https://my-json-server.typicode.com/AnnaStandridge/se_project_react";
+const baseUrl = "http://localhost:3001";
 
 export const processServerResponse = (res) => {
   if (res.ok) {
@@ -9,37 +8,58 @@ export const processServerResponse = (res) => {
   }
 };
 
-export function request(url, options) {
-  return fetch(url, options).then(processServerResponse);
-}
-
-export function fetchItems() {
-  const getItems = fetch(`${baseUrl}/items`, {
+const fetchItems = () => {
+  return fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   }).then(processServerResponse);
-  return getItems;
-}
+};
 
-export function postItems({ name, imageUrl, weather }) {
-  const postItems = fetch(`${baseUrl}/items`, {
+const postItems = ({ name, imageUrl, weather, token }) => {
+  return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(processServerResponse);
-  return postItems;
-}
+};
 
-export function removeItems(selectedCard) {
-  const deleteItems = fetch(`${baseUrl}/items/${selectedCard}`, {
+function removeItems(id, token) {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
-  return deleteItems;
 }
+
+const removeCardLike = (id, user, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ user }),
+  }).then(processServerResponse);
+};
+
+const addCardLike = (id, user, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ user }),
+  }).then(processServerResponse);
+};
+
+const api = { fetchItems, postItems, removeItems, removeCardLike, addCardLike };
+
+export default api;

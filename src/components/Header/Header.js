@@ -1,10 +1,18 @@
 import "./Header.css";
 import wtwrLogo from "../../images/logo.svg";
-import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import React, { useContext } from "react";
 
-const Header = ({ onCreateModal }) => {
+const date = new Date();
+const month = date.toLocaleString("default", { month: "long" });
+const day = date.getDate();
+const formattedDate = `${month} ${day}, New York`;
+
+const Header = ({ onCreateModal, onSignUpModal, onLoginModal, loggedIn }) => {
+  const currentUser = useContext(CurrentUserContext);
+  const avatarImage = currentUser.avatar;
 
   return (
     <header className="header">
@@ -14,23 +22,36 @@ const Header = ({ onCreateModal }) => {
             <img src={wtwrLogo} alt="logo" />
           </Link>
         </div>
-        <div>June 15, New York</div>
+        <div>{formattedDate}</div>
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch />
-        <div>
-          <button
-            className="header__button"
-            type="text"
-            onClick={onCreateModal}
-          >
-            + Add clothes
-          </button>
-        </div>
-        <Link to="/profile">Terrence Tegegne</Link>
-        <div>
-          <img src={avatar} alt="logo" />
-        </div>
+        {loggedIn ? (
+          <>
+            <div>
+              <button
+                className="header__button"
+                type="text"
+                onClick={onCreateModal}
+              >
+                + Add clothes
+              </button>
+            </div>
+            <Link to="/profile">{currentUser.name}</Link>
+            <div>
+              <img src={avatarImage} alt="avatar" />
+            </div>
+          </>
+        ) : (
+          <div className="header__registration">
+            <button className="header__reg-button" onClick={onSignUpModal}>
+              Sign Up
+            </button>
+            <button className="header__reg-button" onClick={onLoginModal}>
+              Log In
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );

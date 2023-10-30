@@ -58,5 +58,17 @@
   left: 350px;
   top: -50px;
   height: 0;
-  
+}
+
+.modal__delete-button_visible {
+  visibility: visible;
+}
+
+.modal__delete-button_hidden {
+  visibility: hidden;
+}
+
+.modal__delete-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
