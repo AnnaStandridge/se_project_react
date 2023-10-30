@@ -43,7 +43,7 @@ function Main({ weatherTemp, onSelectCard, clothingItems }) {
         </div>
         <div className="card_items">
           {filteredCards.map((item) => (
-            <ItemCard item={item} onSelectCard={onSelectCard} key={item.id} />
+            <ItemCard item={item} onSelectCard={onSelectCard} key={item._id} />
           ))}
         </div>
       </section>

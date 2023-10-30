@@ -23,7 +23,7 @@ const login = ({ email, password }) => {
 };
 
 const checkToken = (token) => {
-  return fetch(`${baseUrl}/user/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const checkToken = (token) => {
 };
 
 const editProfile = ({ name, avatar, _id, token }) => {
-  return fetch(`${baseUrl}/user/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
