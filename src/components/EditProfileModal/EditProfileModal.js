@@ -1,65 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import { useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import "./EditProfileModal.css";
-function EditProfileModal({ onClose, onUpdate }) {
-  const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState(currentUser.name);
-  const [avatar, setAvatar] = React.useState(currentUser.avatar);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+const EditProfileModal = ({ handleCloseModal, onUserChanges }) => {
+  /* ------------------------------ Set handlers ------------------------------ */
+  const currentUser = useContext(CurrentUserContext);
+  const _id = currentUser._id;
+  const token = localStorage.getItem("jwt");
+
+  const [name, setName] = useState(currentUser.name);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
-  const handleAvatarChange = (event) => {
-    setAvatar(event.target.value);
+  const [avatar, setavatar] = useState(currentUser.avatar);
+  const handleAvatarChange = (e) => {
+    setavatar(e.target.value);
   };
 
-  const handleSubmission = (event, name, avatar) => {
-    event.preventDefault();
-    onUpdate({ name, avatar });
-  };
+  const isEnabled = name.length > 0 && avatar.length > 0;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onUserChanges({ name, avatar, _id, token });
+  };
+  /* -------------------------------------------------------------------------- */
   return (
     <ModalWithForm
       title="Change profile data"
-      onClose={onClose}
-      onSubmit={(event) => handleSubmission(event, name, avatar)}
+      buttonText="Save changes"
+      onClose={handleCloseModal}
+      onSubmit={handleSubmit}
+      isEnabled={isEnabled}
     >
-      <div className="input-field">
-        <label className="input-field__label" htmlFor="edit-name">
-          Name*
-        </label>
+      <label>
+        <h3 className="modal_form-input-title">Name</h3>
         <input
-          className="input-field__input"
-          name="name"
-          id="edit-name"
+          className="modal_form-input"
           type="text"
-          placeholder="Name"
+          name="name"
           value={name}
           onChange={handleNameChange}
-          required
-        />
-      </div>
-      <div className="input-field">
-        <label className="input-field__label" htmlFor="edit-avatar">
-          Avatar
-        </label>
+          minLength="1"
+          maxLength="30"
+        ></input>
+      </label>
+      <label>
+        <h3 className="modal_form-input-title">Avatar URL</h3>
         <input
-          className="input-field__input"
-          name="avatar"
-          id="edit-avatar"
+          className="modal_form-input"
           type="url"
-          placeholder="Avatar"
-          onChange={handleAvatarChange}
+          name="link"
           value={avatar}
-        />
-      </div>
-      <button className="edit-profile-submit-button" type="submit">
-        Save Changes
-      </button>
+          onChange={handleAvatarChange}
+          minLength="1"
+        ></input>
+      </label>
     </ModalWithForm>
   );
-}
+};
 
 export default EditProfileModal;
