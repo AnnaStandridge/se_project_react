@@ -17,7 +17,8 @@ const fetchItems = () => {
   }).then(processServerResponse);
 };
 
-const postItems = ({ name, imageUrl, weather, token }) => {
+const postItems = ({ name, imageUrl, weather }) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -28,7 +29,7 @@ const postItems = ({ name, imageUrl, weather, token }) => {
   }).then(processServerResponse);
 };
 
-function removeItems(id, token) {
+const removeItems = (id, token) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
@@ -36,7 +37,7 @@ function removeItems(id, token) {
       authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
-}
+};
 
 const removeCardLike = (id, user, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {

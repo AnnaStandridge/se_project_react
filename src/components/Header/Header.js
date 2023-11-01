@@ -39,7 +39,7 @@ const Header = ({ onCreateModal, onSignUpModal, onLoginModal, loggedIn }) => {
             </div>
             <Link to="/profile">{currentUser.name}</Link>
             <div>
-              <img src={avatarImage} alt="avatar" />
+              <img src={avatarImage} className="header__avatar-img" alt="avatar" />
             </div>
           </>
         ) : (
