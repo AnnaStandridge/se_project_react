@@ -12,7 +12,9 @@ const formattedDate = `${month} ${day}, New York`;
 
 const Header = ({ onCreateModal, onSignUpModal, onLoginModal, loggedIn }) => {
   const currentUser = useContext(CurrentUserContext);
-  const avatarImage = currentUser.avatar;
+  const avatarImage = currentUser ? currentUser.avatar : "";
+  const name = currentUser ? currentUser.name : "";
+  const showAvatar = avatar !== "" ? true : false;
 
   return (
     <header className="header">
@@ -39,7 +41,17 @@ const Header = ({ onCreateModal, onSignUpModal, onLoginModal, loggedIn }) => {
             </div>
             <Link to="/profile">{currentUser.name}</Link>
             <div>
-              <img src={avatarImage} className="header__avatar-img" alt="avatar" />
+              {showAvatar ? (
+                <img
+                  src={avatarImage}
+                  className="header__avatar-img"
+                  alt="avatar"
+                />
+              ) : (
+                <p className="sidebar__avatar-placeholder">
+                  {name[0]?.toUpperCase()}
+                </p>
+              )}
             </div>
           </>
         ) : (

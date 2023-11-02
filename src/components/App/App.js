@@ -63,7 +63,8 @@ function App() {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
   };
 
-  const handleDeleteCard = (card, token) => {
+  const handleDeleteCard = (card) => {
+    const token = localStorage.getItem("jwt")
     setIsLoading(true);
     api
       .removeItems(card._id, token)
@@ -250,7 +251,7 @@ function App() {
           {activeModal === "confirmation-opened" && (
             <DeleteModal
               onClose={handleCloseModal}
-              selectedCard={selectedCard}
+              card={selectedCard}
               handleDeleteCard={handleDeleteCard}
               buttonText={isLoading ? "Deleting..." : "Delete"}
             />
