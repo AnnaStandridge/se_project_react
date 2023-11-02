@@ -25,7 +25,7 @@ const ClothesSection = ({ cards, onSelectCard, onCreateModal, onCardLike }) => {
         {filteredCards.map((item) => (
           <ItemCard
             item={item}
-            key={item._id}
+            key={item?._id ?? item?.id}
             onSelectCard={onSelectCard}
             onCardLike={onCardLike}
           />
