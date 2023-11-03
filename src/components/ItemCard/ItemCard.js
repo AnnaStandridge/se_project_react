@@ -6,8 +6,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   const currentUser = useContext(CurrentUserContext);
+  const isLiked = item.likes.some((id) => id === currentUser._id);
 
-  const itemLikeButtonSrc = liked_button;
+  const itemLikeButtonSrc = `${isLiked ? liked_button : unliked_button}`;
 
   let isAuthorized = false;
   if (currentUser !== "") {
@@ -33,7 +34,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
         <img
           className={cardLikeButton}
           src={itemLikeButtonSrc}
-          onClick={() => onCardLike(item._id, currentUser)}
+          onClick={() => onCardLike(item._id, isLiked, currentUser)}
         />
       </div>
     </div>
