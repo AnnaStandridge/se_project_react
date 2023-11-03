@@ -51,20 +51,26 @@
   margin-top: 20px;
 }
 
-.card_like-button {
-  position: relative;
+.card__like-button {
+  background: transparent url(../../images/like-inactive.svg) center no-repeat;
+  background-size: cover;
   width: 18px;
-  height: 15px;
+  height: 16px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: none;
 }
 
 .card_like-button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
-.card_like-button_hidden {
-  visibility: hidden;
+
+.card__like-button-active {
+  background-image: url("../../images/like-active.svg") center no-repeat;
+  border: none;
 }
 
-.card_like-button_visible {
-  visibility: visible;
+.card__like-button-hidden {
+  visibility: hidden;
 }

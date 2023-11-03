@@ -64,7 +64,7 @@ function App() {
   };
 
   const handleDeleteCard = (card) => {
-    const token = localStorage.getItem("jwt")
+    const token = localStorage.getItem("jwt");
     setIsLoading(true);
     api
       .removeItems(card._id, token)
@@ -141,24 +141,21 @@ function App() {
     history.push("/");
   };
 
-  const handleLikeClick = (id, isLiked, user) => {
-    const token = localStorage.getItem("jwt");
+  const handleLikeClick = (_id, isLiked, user) => {
     isLiked
       ? api
-
-          .removeCardLike(id, user, token)
+          .removeCardLike(_id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+              cards.map((card) => (card._id === _id ? updatedCard.data : card))
             );
           })
           .catch(console.error)
       : api
-
-          .addCardLike(id, user, token)
+          .addCardLike(_id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+              cards.map((card) => (card._id === _id ? updatedCard.data : card))
             );
           })
           .catch(console.error);
@@ -220,6 +217,7 @@ function App() {
                 onSelectCard={handleSelectedCard}
                 clothingItems={clothingItems}
                 onCardLike={handleLikeClick}
+                loggedIn={loggedIn}
               />
             </Route>
             <ProtectedRoute path="/profile" loggedIn={loggedIn}>
@@ -230,6 +228,7 @@ function App() {
                 onEditProfile={handleEditProfileModal}
                 onLogout={handleLogOut}
                 onCardLike={handleLikeClick}
+                loggedIn={loggedIn}
               ></Profile>
             </ProtectedRoute>
           </Switch>

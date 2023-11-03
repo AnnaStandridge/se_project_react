@@ -1,25 +1,20 @@
 import "./ItemCard.css";
-import unliked_button from "../../images/like-inactive.svg";
-import liked_button from "../../images/like-active.svg";
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ItemCard = ({ item, onSelectCard, onCardLike }) => {
+const ItemCard = ({ item, onSelectCard, onCardLike, loggedIn }) => {
   const currentUser = useContext(CurrentUserContext);
+  const cardId = item._id;
+  const userId = currentUser ? currentUser._id : "";
   const isLiked = item.likes.some((id) => id === currentUser._id);
 
-  const itemLikeButtonSrc = `${isLiked ? liked_button : unliked_button}`;
+  const likeButtonClass = isLiked
+    ? "card__like-button card__like-button-active"
+    : "card__like-button ";
 
-  let isAuthorized = false;
-  if (currentUser !== "") {
-    isAuthorized = true;
-  } else {
-    isAuthorized = false;
-  }
-
-  const cardLikeButton = `card_like-button ${
-    isAuthorized ? "card_like-button_visible" : "card_like-button_hidden"
-  }`;
+  const handleLikeClick = () => {
+    onCardLike({ _id: cardId, isLiked: isLiked, user: userId });
+  };
 
   return (
     <div className="card">
@@ -31,11 +26,15 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
       />
       <div className="card_title">
         <p className="card_name">{item.name}</p>
-        <img
-          className={cardLikeButton}
-          src={itemLikeButtonSrc}
-          onClick={() => onCardLike(item._id, isLiked, currentUser)}
-        />
+        {loggedIn ? (
+          <button
+            className={likeButtonClass}
+            type="button"
+            onClick={handleLikeClick}
+          />
+        ) : (
+          <button className="card__like-button-hidden" />
+        )}
       </div>
     </div>
   );
