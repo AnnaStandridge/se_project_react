@@ -3,7 +3,13 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ClothesSection = ({ cards, onSelectCard, onCreateModal, onCardLike,loggedIn }) => {
+const ClothesSection = ({
+  cards,
+  onSelectCard,
+  onCreateModal,
+  onCardLike,
+  loggedIn,
+}) => {
   const currentUser = useContext(CurrentUserContext);
   const filteredCards = cards.filter((item) => {
     return item.owner === currentUser._id;
@@ -25,7 +31,7 @@ const ClothesSection = ({ cards, onSelectCard, onCreateModal, onCardLike,loggedI
         {filteredCards.map((item) => (
           <ItemCard
             item={item}
-            key={item?._id ?? item?.id}
+            key={item._id || item.id}
             onSelectCard={onSelectCard}
             onCardLike={onCardLike}
             loggedIn={loggedIn}

@@ -222,7 +222,7 @@ function App() {
             </Route>
             <ProtectedRoute path="/profile" loggedIn={loggedIn}>
               <Profile
-                cards={clothingItems}
+                clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
                 onCreateModal={handleCreateModal}
                 onEditProfile={handleEditProfileModal}
