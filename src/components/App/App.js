@@ -142,6 +142,7 @@ function App() {
   };
 
   const handleLikeClick = (_id, isLiked, user) => {
+    debugger;
     isLiked
       ? api
           .removeCardLike(_id)
@@ -164,8 +165,8 @@ function App() {
   useEffect(() => {
     api
       .fetchItems()
-      .then((cards) => {
-        setClothingItems(cards);
+      .then((items) => {
+        setClothingItems(items);
       })
       .catch((error) => {
         console.error(error);
