@@ -16,7 +16,7 @@ function Profile({
     <div className="profile">
       <SideBar onEditProfile={onEditProfile} onLogout={onLogout} />
       <ClothesSection
-        cards={clothingItems}
+        clothingItems={clothingItems}
         onCreateModal={onCreateModal}
         onSelectCard={onSelectCard}
         onCardLike={onCardLike}

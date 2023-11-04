@@ -39,8 +39,7 @@ const removeItems = (id, token) => {
   }).then(processServerResponse);
 };
 
-const removeCardLike = (id) => {
-  const token = localStorage.getItem("jwt");
+const removeCardLike = (id, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
@@ -50,8 +49,7 @@ const removeCardLike = (id) => {
   }).then(processServerResponse);
 };
 
-const addCardLike = (id) => {
-  const token = localStorage.getItem("jwt");
+const addCardLike = (id, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {

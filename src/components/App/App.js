@@ -141,22 +141,22 @@ function App() {
     history.push("/");
   };
 
-  const handleLikeClick = (_id, isLiked, user) => {
-    debugger;
+  const handleLikeClick = (id, isLiked, user) => {
+    const token = localStorage.getItem("jwt");
     isLiked
       ? api
-          .removeCardLike(_id)
+          .removeCardLike(id, user, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((card) => (card._id === _id ? updatedCard.data : card))
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
             );
           })
           .catch(console.error)
       : api
-          .addCardLike(_id)
+          .addCardLike(id, user, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((card) => (card._id === _id ? updatedCard.data : card))
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
             );
           })
           .catch(console.error);

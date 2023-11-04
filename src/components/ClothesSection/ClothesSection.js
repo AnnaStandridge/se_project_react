@@ -4,14 +4,14 @@ import ItemCard from "../ItemCard/ItemCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ClothesSection = ({
-  cards,
+  clothingItems,
   onSelectCard,
   onCreateModal,
   onCardLike,
   loggedIn,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const filteredCards = cards.filter((item) => {
+  const filteredCards = clothingItems.filter((item) => {
     return item.owner === currentUser._id;
   });
 
