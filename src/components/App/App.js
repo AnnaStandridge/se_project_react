@@ -141,25 +141,25 @@ function App() {
     history.push("/");
   };
 
-  const handleLikeClick = (id, isLiked, user) => {
+  const handleLikeClick = ({ id, isLiked, user }) => {
     const token = localStorage.getItem("jwt");
     isLiked
       ? api
-          .removeCardLike(id, user, token)
+          .addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+              cards.map((c) => (c._id === id ? updatedCard : c))
             );
           })
-          .catch(console.error)
+          .catch((err) => console.log(err))
       : api
-          .addCardLike(id, user, token)
+          .removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+              cards.map((c) => (c._id === id ? updatedCard : c))
             );
           })
-          .catch(console.error);
+          .catch((err) => console.log(err));
   };
 
   useEffect(() => {
