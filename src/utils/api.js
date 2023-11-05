@@ -39,23 +39,25 @@ const removeItems = (id, token) => {
   }).then(processServerResponse);
 };
 
-const removeCardLike = (id, token) => {
+const removeCardLike = (id, user, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
+    body: JSON.stringify({ user }),
   }).then(processServerResponse);
 };
 
-const addCardLike = (id, token) => {
+const addCardLike = (id, user, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
+    body: JSON.stringify({ user }),
   }).then(processServerResponse);
 };
 

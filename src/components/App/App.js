@@ -112,6 +112,7 @@ function App() {
       .login(user)
       .then((res) => {
         setCurrentUser(res.user);
+        console.log(res);
         localStorage.setItem("jwt", res.token);
         setloggedIn(true);
         handleCloseModal();
@@ -141,11 +142,12 @@ function App() {
     history.push("/");
   };
 
-  const handleLikeClick = ({ id, isLiked, user }) => {
+  const handleLikeClick = (id, isLiked, user) => {
     const token = localStorage.getItem("jwt");
-    isLiked
+    console.log(id, isLiked, user);
+    !isLiked
       ? api
-          .addCardLike(id, token)
+          .addCardLike(id, user, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((c) => (c._id === id ? updatedCard : c))
@@ -153,7 +155,7 @@ function App() {
           })
           .catch((err) => console.log(err))
       : api
-          .removeCardLike(id, token)
+          .removeCardLike(id, user, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((c) => (c._id === id ? updatedCard : c))
@@ -197,7 +199,7 @@ function App() {
         })
         .catch(console.error);
     }
-  }, []);
+  }, [loggedIn]);
 
   return (
     <div>

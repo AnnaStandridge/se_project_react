@@ -10,10 +10,6 @@ const ItemCard = ({ item, onSelectCard, onCardLike, loggedIn }) => {
     ? "card__like-button card__like-button-active"
     : "card__like-button";
 
-  const handleLikeClick = () => {
-    onCardLike({ id: item._id, isLiked: isLiked, user: currentUser ? currentUser._id : "" });
-  };
-
   return (
     <div className="card">
       <img
@@ -28,7 +24,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike, loggedIn }) => {
           <button
             className={likeButtonClass}
             type="button"
-            onClick={handleLikeClick}
+            onClick={() => onCardLike(item._id, isLiked, currentUser)}
           />
         ) : (
           <button className="card__like-button-hidden" />

@@ -53,7 +53,7 @@ function Main({
               item={item}
               onSelectCard={onSelectCard}
               onCardLike={onCardLike}
-              key={item._id || item.id}
+              key={item._id}
               loggedIn={loggedIn}
             />
           ))}
