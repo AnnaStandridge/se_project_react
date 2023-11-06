@@ -44,6 +44,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
+    setIsLoading(true);
     api
       .postItems(item)
       .then((newItem) => {
