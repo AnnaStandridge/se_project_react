@@ -13,6 +13,7 @@ const formattedDate = `${month} ${day}, New York`;
 const Header = ({ onCreateModal, onSignUpModal, onLoginModal, loggedIn }) => {
   const currentUser = useContext(CurrentUserContext);
   const avatar = currentUser ? currentUser.avatar : "";
+  console.log(currentUser);
   const name = currentUser ? currentUser.name : "";
   const showAvatar = avatar !== "" ? true : false;
 

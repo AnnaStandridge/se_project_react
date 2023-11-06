@@ -7,7 +7,6 @@ const EditProfileModal = ({ handleCloseModal, onUserChanges }) => {
   /* ------------------------------ Set handlers ------------------------------ */
   const currentUser = useContext(CurrentUserContext);
   const _id = currentUser._id;
-  const token = localStorage.getItem("jwt");
 
   const [name, setName] = useState(currentUser.name);
   const handleNameChange = (e) => {
@@ -23,9 +22,10 @@ const EditProfileModal = ({ handleCloseModal, onUserChanges }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUserChanges({ name, avatar, _id, token });
+    onUserChanges({ name: name, avatar: avatar, _id: _id });
+    console.log(name, avatar);
   };
-  /* -------------------------------------------------------------------------- */
+
   return (
     <ModalWithForm
       title="Change profile data"

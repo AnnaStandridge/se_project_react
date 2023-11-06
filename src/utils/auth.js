@@ -32,7 +32,8 @@ const checkToken = (token) => {
   }).then(processServerResponse);
 };
 
-const editProfile = ({ name, avatar, _id, token }) => {
+const editProfile = ({ name, avatar, _id }) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {

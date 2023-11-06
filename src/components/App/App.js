@@ -128,8 +128,8 @@ function App() {
     auth
       .editProfile(editUser)
       .then((newUser) => {
+        setCurrentUser(newUser.user);
         console.log(newUser);
-        setCurrentUser(newUser);
         handleCloseModal();
       })
       .catch(console.error);

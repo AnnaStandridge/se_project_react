@@ -23,7 +23,7 @@ function SideBar({ onEditProfile, onLogout }) {
             {name[0]?.toUpperCase()}
           </p>
         )}
-        <h3 className="sidebar__avatar-name">{currentUser.name}</h3>
+        <h3 className="sidebar__avatar-name">{currentUser?.name}</h3>
       </div>
       <h3 className="sidebar__options" onClick={onEditProfile}>
         Change profile data
